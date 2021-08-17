@@ -5,9 +5,9 @@ def call(body) {
     body.delegate = config
     body()
 
-    def agentDocker = config.agent == null ? 'maven:3.6.3-jdk-8' : config.agent
+    def agentDocker = config.agent == null ? 'maven:3.6.3-jdk-8' : config.agent.toString()
 
-    println 'agentDocker' + agentDocker
+    println 'agentDocker 2' + agentDocker
 
     pipeline {
         agent none
