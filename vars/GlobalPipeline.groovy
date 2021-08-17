@@ -33,6 +33,28 @@ def call(body) {
                     }
                 }
             }
+            stage("Stage 2") {
+                parallel {
+                    stage("Stage 2 A") {
+                        steps {
+                            sleep 3
+                    
+                            script {
+                                log.info 'Stage 2 A'
+                            }
+                        }
+                    }
+                    stage("Stage 2 B") {
+                        steps {
+                            sleep 3
+                    
+                            script {
+                                log.info 'Stage 2 B'
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 
