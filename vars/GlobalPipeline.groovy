@@ -5,6 +5,24 @@ def call(body) {
     body.delegate = config
     body()
 
-    println 'Hola mundo'
+    def agentDocker = config.agent == null ? 'maven:3.6.3-jdk-8' : config.agent
+
+    println 'agentDocker' + agentDocker
+
+    pipeline {
+        agent none
+        stages {
+            stage("Build") {
+                agent {
+                    docker {
+                        image agentDocker
+                    }
+                }
+                steps {
+                    sh "mvn clean package -B -ntp -DskipTests -Dcheckstyle.skip"
+                }
+            }
+        }
+    }
 
 }
