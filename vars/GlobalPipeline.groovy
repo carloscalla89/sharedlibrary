@@ -18,14 +18,19 @@ def call(body) {
     echo fechaConFormato
 
     pipeline {
-        agent none
+        agent {
+            docker {
+                image agentDocker
+            }
+        }
         stages {
             stage("Stage 1") {
-
-                sleep 3
+                steps {
+                    sleep 3
             
-                scripts {
-                    log.info 'Stage 1'
+                    scripts {
+                        log.info 'Stage 1'
+                    }
                 }
             }
         }
