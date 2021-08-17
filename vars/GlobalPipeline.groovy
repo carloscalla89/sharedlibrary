@@ -28,7 +28,7 @@ def call(body) {
                 steps {
                     sleep 3
             
-                    scripts {
+                    script {
                         log.info 'Stage 1'
                     }
                 }
