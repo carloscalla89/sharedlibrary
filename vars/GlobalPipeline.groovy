@@ -1,3 +1,5 @@
+import java.text.SimpleDateFormat
+
 def call(body) {
 
     def config = [:]
@@ -9,17 +11,21 @@ def call(body) {
 
     println 'agentDocker 2' + agentDocker
 
+    def dateFormat = new SimpleDateFormat('yyyyMMdd')
+    def date = new Date()
+    fechaConFormato = dateFormat.format(date)
+    println fechaConFormato
+    echo fechaConFormato
+
     pipeline {
         agent none
         stages {
-            stage("Build") {
-                agent {
-                    docker {
-                        image agentDocker
-                    }
-                }
-                steps {
-                    sh "mvn clean package -B -ntp -DskipTests -Dcheckstyle.skip"
+            stage("Stage 1") {
+
+                sleep 3
+            
+                scripts {
+                    log.info 'Stage 1'
                 }
             }
         }
